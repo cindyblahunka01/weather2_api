@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Weather from './components/Weather';
 
-function App() {
+//import { Clock } from './components'
+
+let testProp: string = 'Am I getting passed to the Weather component?';
+let optionalProp: string = 'You sure are!';
+
+const App: React.FunctionComponent = () => {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="verticalCenter">
+        <Weather testProp={testProp} optionalProp={optionalProp} />
+      </div>
     </div>
   );
 }
 
 export default App;
+
