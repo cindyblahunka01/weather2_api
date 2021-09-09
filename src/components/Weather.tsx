@@ -10,6 +10,8 @@ type WeatherState = {
   temp: number
   lat: number
   lon: number
+  name: string
+  weather: string
 }
 
 class Weather extends Component <AcceptedProps, WeatherState> {
@@ -18,7 +20,9 @@ class Weather extends Component <AcceptedProps, WeatherState> {
     this.state = {
       lat: 0,
       lon: 0,
-      temp: 0
+      temp: 0,
+      name: '',
+      weather: ''
     };
     // example of binding - this.location is not fat arrow
     // - needs to bind to have acces to 'this' keyword
@@ -53,6 +57,10 @@ class Weather extends Component <AcceptedProps, WeatherState> {
           console.log(data)
           this.setState({
             temp: Math.round(data.main.temp),
+            name: data.name,
+            lat: data.coord.lat,
+            lon: data.coord.lon,
+            weather: data.weather[0].main
           })
         })
     })
@@ -64,7 +72,11 @@ class Weather extends Component <AcceptedProps, WeatherState> {
         <h4>Using geolocation and open weather APIs in React</h4>
         {/* <p>{this.props.testProp}</p>
         <p>{this.props.optionalProp}</p> */}
-      <p>{`${this.state.temp}\u00B0F`}</p>
+      <p>Your coordinates latitude {`${this.state.lat}`}</p>
+      <p>Your coordinates longitude {`${this.state.lon}`}</p>
+      <p>You are near station {`${this.state.name}`}</p>
+      <p>Current Temperature {`${this.state.temp}\u00B0F`}</p>
+      <p>Current Weather {`${this.state.weather}`}</p>
       </div>
     );
   }
